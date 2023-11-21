@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import Board from "../../_components/board";
+import Form from "../../_components/form";
 
 const OrganizationIdPage = async ({
 	params,
@@ -14,17 +15,7 @@ const OrganizationIdPage = async ({
 	const boards = await db.board.findMany();
 	return (
 		<div>
-			<form action={create}>
-				<input
-					type="text"
-					id="title"
-					name="title"
-					required
-					placeholder="Enter a board title"
-					className="border-black border p-1"
-				/>
-				<Button type="submit">Submit</Button>
-			</form>
+			<Form />
 			<div className="space-y-2">
 				{boards.map((board) => (
 					<Board id={board.id} key={board.id} title={board.title} />
